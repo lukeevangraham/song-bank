@@ -3,6 +3,7 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 
 const mongoose = require("mongoose");
+const routes = require("./routes");
 
 // Require all models
 let db = require("./models")
@@ -19,21 +20,22 @@ if (process.env.NODE_ENV === "production") {
 
 mongoose.connect("mongodb://localhost/songbank", { useNewUrlParser: true });
 
-// sample song
-var data = {
-  title: "10,000 Reasons",
-  performer: "Band"
-}
+// // sample song
+// var data = {
+//   title: "10,000 Reasons",
+//   performer: "Band"
+// }
 
 // Define API routes here
-app.post("/submit", function(req, res) {
-  db.Song.create(data)
-  .then(function(dbSong) {
-    console.log(dbSong)
-  }).catch(function(err) {
-    console.log(err.message);
-  })
-})
+app.use(routes)
+// app.post("/submit", function(req, res) {
+//   db.Song.create(data)
+//   .then(function(dbSong) {
+//     console.log(dbSong)
+//   }).catch(function(err) {
+//     console.log(err.message);
+//   })
+// })
 
 // Send every other request to the React app
 // Define any API routes before this runs

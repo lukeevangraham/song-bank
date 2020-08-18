@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import API from "../../utils/API"
 
 class Submit extends Component {
   state = {
@@ -18,7 +19,15 @@ class Submit extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault();
 
-    alert(`Let's add ${this.state.title} to the DB!`);
+    if (this.state.title) {
+        API.saveSong({
+            title: this.state.title,
+            performer: this.state.performer,
+            dateRecorded: this.state.dateRecorded
+        })
+        // .then(res => this.loadSongs())
+        .catch(err => console.log(err))
+    }
   };
 
   render() {
