@@ -33,9 +33,6 @@ class Submit extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>Welcome to Submit</h2>
-        </div>
         <div className="container">
           <div className="row justify-content-md-center">
             <div className="col-6">
